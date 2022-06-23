@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import Form from "./components/Form";
+import Navbar from "./components/Navbar";
+import { useState } from 'react'
+import Products from "./components/Products";
 
 function App() {
+  let [globalCompany, setGlobalCompany] = useState('');
+  let [globalProduct, setGlobalProduct] = useState('');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div >
+      <Navbar setGlobalCompany={setGlobalCompany} setGlobalProduct={setGlobalProduct}></Navbar>
+
+      {(globalCompany == '' && globalProduct == '') ?
+        <Form setGlobalCompany={setGlobalCompany} setGlobalProduct={setGlobalProduct}></Form>:
+        <Products globalCompany={globalCompany} globalProduct={globalProduct}></Products>
+    }
+
     </div>
   );
 }
